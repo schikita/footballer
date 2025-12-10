@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интервью с легендой футбола</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-text">ЖИВОЙ РЕПОРТАЖ</div>
+            <div class="preloader-ball"></div>
+
+        </div>
+    </div>
+
+    <!-- OVERLAY MENU WITH CHECKBOX (МОБИЛЬНОЕ) -->
+    <input type="checkbox" id="active">
+    <label for="active" class="menu-btn">
+        <img src="./assets/img/ball.png" alt="Menu">
+    </label>
+
+    <div class="wrapper">
+        <ul>
+            <li><a href="#interview">Интервью</a></li>
+            <li><a href="#story">История</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#contact">Контакт</a></li>
+        </ul>
+    </div>
+
+    <!-- DESKTOP HEADER -->
+    <header>
+        <div class="header__left">
+            <a href="https://www.sb.by/" class="logo" target="_blank" rel="noopener noreferrer">
+                <img src="./assets/img/logo.png" loading="lazy" alt="Логотип SB.BY" width="44" height="44" />
+                <span class="logo-text">SB.BY</span>
+            </a>
+        </div>
+
+        <nav>
+            <a href="#interview">Интервью</a>
+            <a href="#story">История</a>
+            <a href="#gallery">Галерея</a>
+            <a href="#contact">Контакт</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-bg">
+            <!-- PNG футбольные мячи -->
+            <div class="soccer-ball soccer-ball-1">
+                <img class="soccer-ball-img" src="./assets/img/ball.png" alt="Футбольный мяч">
+            </div>
+            <div class="soccer-ball soccer-ball-2">
+                <img class="soccer-ball-img" src="./assets/img/glove.png" alt="Футбольный мяч">
+            </div>
+            <div class="soccer-ball soccer-ball-3">
+                <img class="soccer-ball-img" src="./assets/img/boots.png" alt="Футбольный мяч">
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-label">ЖИВОЙ РЕПОРТАЖ</div>
+            <h1 class="hero-title">Встреча с легендой поля</h1>
+            <p class="hero-subtitle">Откровенный разговор о футболе, карьере и жизни за пределами стадиона</p>
+
+            <div class="hero-cta">
+                <a href="#interview" class="btn btn-primary">Читать интервью</a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="interview" class="interview-section">
+        <div class="interview-inner">
+            <h2>Интервью</h2>
+            <p>
+                Здесь может быть текст интервью, выдержки, ключевые цитаты и т.д.
+            </p>
+        </div>
+    </section>
+
+
+
+    <section id="story" class="story-section">
+        <div class="story-layout">
+            <div class="story-text">
+                <h2>История</h2>
+                <p class="story-intro">
+                    Блок с историей игрока, временной лентой и интересными фактами.
+                </p>
+            </div>
+
+            <div class="story-carousel">
+                <div class="carousel">
+                    <ul class="carousel__list">
+                        <li class="carousel__item" data-pos="-2" data-index="0">
+                            <img class="carousel__img" src="./assets/img/slider-1/01.jpg"
+                                data-full="./assets/img/slider-1/full/01.jpg" alt="">
+                        </li>
+                        <li class="carousel__item" data-pos="-1" data-index="1">
+                            <img class="carousel__img" src="./assets/img/slider-1/02.jpg"
+                                data-full="./assets/img/slider-1/full/02.jpg"" alt="">
+                        </li>
+                        <li class=" carousel__item" data-pos="0" data-index="2">
+                            <img class="carousel__img" src="./assets/img/slider-1/03.jpg"
+                                data-full="./assets/img/slider-1/full/03.jpg"" alt="">
+                        </li>
+                        <li class=" carousel__item" data-pos="1" data-index="3">
+                            <img class="carousel__img" src="./assets/img/slider-1/04.jpg"
+                                data-full="./assets/img/slider-1/full/04.jpg"" alt="">
+                        </li>
+                        <li class=" carousel__item" data-pos="2" data-index="4">
+                            <img class="carousel__img" src="./assets/img/slider-1/05.jpg"
+                                data-full="./assets/img/slider-1/full/05.jpg"" alt="">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<section id=" gallery" class="gallery-section">
+                            <div class="gallery-header">
+                                <h2>Галерея</h2>
+                                <p class="gallery-intro">
+                                    Фотографии, видео, лучшие моменты матчей и тренировок.
+                                </p>
+                            </div>
+
+                            <div class="gallery-grid">
+                                <figure class="gallery-item gallery-item--1">
+                                    <img src="./assets/img/gal/01.jpg" alt="Выход команды на поле">
+                                </figure>
+
+                                <figure class="gallery-item gallery-item--2">
+                                    <img src="./assets/img/gal/02.jpg" alt="Удар по мячу">
+                                </figure>
+
+                                <figure class="gallery-item gallery-item--3">
+                                    <img src="./assets/img/gal/03.jpg" alt="Портрет игрока">
+                                </figure>
+
+                                <figure class="gallery-item gallery-item--4">
+                                    <img src="./assets/img/gal/04.jpg" alt="Игрок с мячом">
+                                </figure>
+
+                                <figure class="gallery-item gallery-item--5">
+                                    <img src="./assets/img/gal/05.jpg" alt="Командное фото">
+                                </figure>
+
+
+
+                                <figure class="gallery-item gallery-item--7">
+                                    <img src="./assets/img/gal/06.jpg" alt="Момент атаки">
+                                </figure>
+
+
+                            </div>
+    </section>
+
+
+
+
+    <section id="contact" class=" contact-section">
+        <div class="contact-inner">
+            <h2>Контакт</h2>
+            <p>
+                Если вы хотите договориться об интервью, пригласить героя на встречу
+                или получить больше материалов, свяжитесь с нами удобным способом.
+            </p>
+
+            <p class="contact-highlight">
+                Почта: <a href="mailto:example@sb.by">example@sb.by</a><br>
+                Telegram: <a href="https://t.me/your_channel" target="_blank"
+                    rel="noopener noreferrer">@your_channel</a>
+            </p>
+        </div>
+    </section>
+
+
+
+    <!-- GOALKEEPER GAME SECTION -->
+    <section id="game" class="game-section">
+        <div class="game-container">
+            <h2 class="game-title">⚽ Игра ВРАТАРЬ</h2>
+            <p class="game-subtitle">Поймай мячи и выигрывай! Первый до 3 очков</p>
+
+            <div class="game-wrapper">
+                <!-- SCORE BOARD -->
+                <div class="score-board">
+                    <div class="score-item player-score">
+                        <div class="score-label">ТЫ</div>
+                        <div class="score-value" id="playerScore">0</div>
+                    </div>
+                    <div class="score-vs">VS</div>
+                    <div class="score-item computer-score">
+                        <div class="score-label">КОМПЬЮТЕР</div>
+                        <div class="score-value" id="computerScore">0</div>
+                    </div>
+                </div>
+
+                <!-- GAME FIELD -->
+                <div class="game-field" id="gameField">
+                    <!-- GOAL POST -->
+                    <div class="goal-post">
+                        <!-- Top bar -->
+                        <div class="goal-bar goal-bar-top"></div>
+                        <!-- Side bars -->
+                        <div class="goal-bar goal-bar-left"></div>
+                        <div class="goal-bar goal-bar-right"></div>
+                        <!-- Bottom bar -->
+                        <div class="goal-bar goal-bar-bottom"></div>
+
+                        <!-- GOALKEEPER -->
+                        <div class="goalkeeper" id="goalkeeper">
+                            <div class="goalie-head"></div>
+                            <div class="goalie-body"></div>
+                            <div class="goalie-arm goalie-arm-left"></div>
+                            <div class="goalie-arm goalie-arm-right"></div>
+                            <div class="goalie-leg goalie-leg-left"></div>
+                            <div class="goalie-leg goalie-leg-right"></div>
+                        </div>
+
+                        <!-- BALL CONTAINER -->
+                        <div class="ball-container" id="ballContainer">
+                            <div class="soccer-ball-game" id="soccerBall">⚽</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GAME STATUS -->
+                <div class="game-status" id="gameStatus">
+                    <button class="btn btn-primary btn-game" id="startBtn">Начать игру</button>
+                </div>
+
+                <!-- GAME MESSAGE -->
+                <div class="game-message" id="gameMessage"></div>
+            </div>
+
+            <!-- GAME INSTRUCTIONS -->
+            <div class="game-instructions">
+                <h3>Как играть:</h3>
+                <ul>
+                    <li>🎯 Кликай или касайся экрана, чтобы ловить мяч</li>
+                    <li>⚽ Словил мяч = +1 очко тебе</li>
+                    <li>❌ Пропустил = +1 очко компьютеру</li>
+                    <li>🏆 Первый до 3 очков побеждает!</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="page projects-section" id="projects" aria-label="Живой репортаж — материалы">
+        <div class="projects-inner container">
+
+            <div class="section-header">
+                <h2 class="section-title text-pr">Живой репортаж — материалы</h2>
+            </div>
+
+            <!-- Главный карусельный контейнер -->
+            <div class="projects-viewport" data-autoplay="true" data-interval="5000">
+
+                <!-- Слайдер -->
+                <div class="projects-stage">
+
+                    <a href="https://www.sb.by/sp/top-10-nachodok/" class="project-card">
+                        <img src="./assets/img/projects/first-collage.jpg" loading="lazy" alt="Кто такие споттеры?" />
+                        <div class="project-info">
+                            <h3>Необычный ТОП-10</h3>
+                        </div>
+                    </a>
+
+                    <a href="https://www.sb.by/sp/issledovania-na-kraju-sveta/" class="project-card is-active">
+                        <img src="./assets/img/projects/hero123.jpg" loading="lazy" alt="Полярники" />
+                        <div class="project-info">
+                            <h3>Исследования на краю света</h3>
+                        </div>
+                    </a>
+
+                    <a href="https://www.sb.by/sp/legko-li-sobirat-konfetnye-podarki/" class="project-card is-active">
+                        <img src="./assets/img/projects/hero-bg.jpg" loading="lazy" alt="Полярники" />
+                        <div class="project-info">
+                            <h3>Легко ли собирать конфетные подарки?</h3>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Контролы -->
+                <div class="projects-controls">
+                    <button class="pr-btn prev" aria-label="Назад">◀</button>
+                    <div class="pr-dots" aria-hidden="true"></div>
+                    <button class="pr-btn next" aria-label="Вперед">▶</button>
+                </div>
+
+            </div>
+
+            <!-- Кнопка "Все материалы" -->
+            <div class="projects-footer">
+                <a href="https://www.sb.by/articles/themes/spetsproekt-sb-nash-zhivoy-reportazh/"
+                    class="btn-all-projects">
+                    Смотреть все материалы
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Футер внутри секции -->
+        <footer class="site-footer">
+            <div class="footer-credits">
+                <p>Автор: <strong>Никита САФФИУЛИН</strong></p>
+            </div>
+
+            <hr class="footer-divider" />
+
+            <div class="footer-copy">© Издательский дом «Беларусь сегодня»</div>
+        </footer>
+    </section>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" title="Наверх">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Модальное окно для просмотра фото истории -->
+    <div class="lightbox" id="story-lightbox">
+        <div class="lightbox__overlay"></div>
+        <div class="lightbox__content">
+            <button class="lightbox__close" aria-label="Закрыть">&times;</button>
+
+            <button class="lightbox__arrow lightbox__arrow--prev" aria-label="Предыдущее фото">
+                &#10094;
+            </button>
+
+            <img src="" alt="" class="lightbox__img">
+
+            <button class="lightbox__arrow lightbox__arrow--next" aria-label="Следующее фото">
+                &#10095;
+            </button>
+
+            <div class="lightbox__caption"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="./assets/js/main.js"></script>
+    <script>
+        function loadYandexMetrika() {
+            (function (m, e, t, r, i, k, a) {
+                m[i] =
+                    m[i] ||
+                    function () {
+                        (m[i].a = m[i].a || []).push(arguments);
+                    };
+                m[i].l = 1 * new Date();
+                for (var j = 0; j < document.scripts.length; j++) {
+                    if (document.scripts[j].src === r) return;
+                }
+                (k = e.createElement(t)),
+                    (a = e.getElementsByTagName(t)[0]),
+                    (k.async = 1),
+                    (k.src = r),
+                    a.parentNode.insertBefore(k, a);
+            })(
+                window,
+                document,
+                "script",
+                "https://mc.yandex.ru/metrika/tag.js",
+                "ym"
+            );
+            ym(16707172, "init", {
+                webvisor: true,
+                clickmap: true,
+                accurateTrackBounce: true,
+                trackLinks: true,
+            });
+        }
+
+        function loadGTM() {
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-KRVNNK");
+        }
+
+        window.addEventListener("load", () => {
+            setTimeout(loadYandexMetrika, 3000);
+            setTimeout(loadGTM, 4000);
+        });
+    </script>
+</body>
+
+</html>

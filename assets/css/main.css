@@ -1037,14 +1037,80 @@ nav a:hover::after {
   }
 }
 
-@media (max-width: 480px) {
-  .contact-inner h2 {
-    font-size: 26px;
+/* ===== MOBILE FIXES (до 768px) ===== */
+@media (max-width: 768px) {
+
+  /* Секции с длинным текстом — без жёсткой высоты,
+     текст смещаем ниже и даём нормальные отступы */
+  .contact-section,
+  .perimeter-section,
+  .hope-section,
+  .photo-text-section {
+    height: auto;
+    min-height: auto;
+    padding-top: 80px;
+    padding-bottom: 60px;
+    background-attachment: scroll;
   }
 
-  .contact-inner > p,
+  /* Контактный блок — строго в одну колонку */
+  .contact-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .contact-col-left,
+  .contact-col-right {
+    max-width: 100%;
+  }
+
   .contact-col-text {
     font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* Блок "Свой «периметр» в автобусе..." — текст ниже и без наложения */
+  .perimeter-section {
+    clear: both;
+  }
+
+  .perimeter-inner {
+    padding: 0 16px;
+    justify-content: flex-start;
+  }
+
+  .perimeter-text {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .perimeter-text h2 {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  /* "Надеюсь, рост остановится..." — в одну колонку */
+  .hope-inner {
+    padding-top: 50px;
+    padding-bottom: 0;
+  }
+
+  .hope-inner h2 {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .hope-text {
+    column-count: 1;
+    column-gap: 0;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .hope-text p {
+    margin-bottom: 14px;
   }
 }
 
@@ -1835,42 +1901,69 @@ nav a:hover::after {
   }
 
   .interview-inner {
-
     padding: 24px 18px;
     border-radius: 18px;
   }
 
   .interview-section h2 {
-
     font-size: 24px;
   }
 
   .interview-section p {
-
     font-size: 16px;
   }
 
+  /* ===== STORY — МОБИЛЬНАЯ ВЕРСИЯ ===== */
+  .story-section {
+    height: auto;               /* больше не 100vh */
+    min-height: auto;
+    padding: 100px 16px 60px;   /* комфортные отступы */
+    background-attachment: scroll;
+  }
+
   .story-layout {
-    flex-direction: column;
+    flex-direction: column;     /* текст над слайдером */
+    align-items: flex-start;
+    height: auto;
+    gap: 24px;
+    padding: 0;
   }
 
   .story-text {
     flex: none;
-    text-align: center;
+    text-align: left;           /* читается лучше, чем по центру */
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .story-text h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .story-intro {
+    font-size: 16px;
+    line-height: 1.7;
   }
 
   .story-carousel {
     flex: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .carousel__list {
-    height: 300px;
+    height: 360px;              /* ниже, чтобы не съедать экран */
+    max-width: 100%;
   }
 
   .carousel__item {
-    width: 180px;
-    height: 260px;
+    width: 78%;
+    max-width: 360px;
+    height: 340px;     
   }
+  /* ===== / STORY ===== */
 
   .gallery-section {
     padding: 100px 16px 60px;
@@ -1985,6 +2078,32 @@ nav a:hover::after {
     width: 45px;
     height: 45px;
   }
+
+  /* STORY — ещё компактнее на очень узких экранах */
+  .story-section {
+    padding: 90px 12px 50px;
+  }
+
+  .story-text h2 {
+    font-size: 22px;
+  }
+
+  .story-intro {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .carousel__list {
+    height: 360px;
+  }
+
+  .carousel__item {
+    width: 75%;
+   width: 78%;
+    max-width: 360px;
+    height: 340px;     
+  }
+  /* / STORY */
 
   .gallery-grid {
     grid-template-columns: 1fr;

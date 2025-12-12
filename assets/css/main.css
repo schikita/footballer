@@ -625,6 +625,7 @@ nav a:hover::after {
   z-index: 3;
   flex: 0 0 40%;
   text-align: left;
+  padding-top: 100px;
 }
 
 .story-text h2 {
@@ -1910,10 +1911,11 @@ nav a:hover::after {
     padding: 0;
   }
 
-  .story-text {
+  .story-text {    
     flex: none;
     text-align: left;
     max-width: 100%;
+    
     margin: 0 auto;
   }
 

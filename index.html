@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="is-loading">
+
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -45,7 +47,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
+    <link rel="preload" as="image" href="./assets/img/pre-bg.jpg">
     <link rel="stylesheet" href="./assets/css/main.css">
+
 
     <link rel="preload" as="image" href="./assets/img/hero.jpg">
 
@@ -70,7 +74,7 @@
         <ul>
             <li><a href="#story">КАКОВО БЫЛО В ДЕТСТВЕ? </a></li>
             <li><a href="#perimetr">ОСОБЕННОСТИ РОСТА</a></li>
-            <li><a href="#footb">НЕМНОГО О ФУТБОЛЕ</a></li>           
+            <li><a href="#footb">НЕМНОГО О ФУТБОЛЕ</a></li>
         </ul>
     </div>
 
@@ -84,7 +88,7 @@
         </div>
 
         <nav>
-            <a href="#story">КАКОВО БЫЛО В ДЕТСТВЕ? </a>           
+            <a href="#story">КАКОВО БЫЛО В ДЕТСТВЕ? </a>
             <a href="#perimetr">ОСОБЕННОСТИ РОСТА</a>
             <a href="#footb">НЕМНОГО О ФУТБОЛЕ</a>
         </nav>
@@ -135,40 +139,18 @@
                 </p>
             </div>
 
-            <div class="story-carousel">
-                <div class="carousel">
-                    <ul class="carousel__list">
-                        <li class="carousel__item" data-pos="-3" data-index="0">
-                            <img class="carousel__img" src="./assets/img/slider-1/06.jpg" loading="lazy"
-                                data-full="./assets/img/slider-1/full/06.jpg" alt="">
-                        </li>
-                        <li class="carousel__item" data-pos="-2" data-index="0">
-                            <img class="carousel__img" src="./assets/img/slider-1/01.jpg" loading="lazy"
-                                data-full="./assets/img/slider-1/full/01.jpg" alt="">
-                        </li>
-                        <li class="carousel__item" data-pos="-1" data-index="1">
-                            <img class="carousel__img" src="./assets/img/slider-1/02.jpg" loading="lazy"
-                                data-full="./assets/img/slider-1/full/02.jpg" alt="">
-                        </li>
-                        <li class="carousel__item" data-pos="0" data-index="2">
-                            <img class="carousel__img" src="./assets/img/slider-1/03.jpg" loading="lazy"
-                                data-full="./assets/img/slider-1/full/03.jpg" alt="">
-                        </li>
-                        <li class="carousel__item" data-pos="1" data-index="3">
-                            <img class="carousel__img" src="./assets/img/slider-1/04.jpg" loading="lazy"
-                                data-full="./assets/img/slider-1/full/04.jpg" alt="">
-                        </li>
-                        <li class="carousel__item" data-pos="2" data-index="4">
-                            <img class="carousel__img" src="./assets/img/slider-1/05.jpg" loading="lazy"
-                                data-full="./assets/img/slider-1/full/05.jpg" alt="">
-                        </li>
-                        <li class="carousel__item" data-pos="3" data-index="4">
-                            <img class="carousel__img" src="./assets/img/slider-1/07.jpg" loading="lazy"
-                                data-full="./assets/img/slider-1/full/07.jpg" alt="">
-                        </li>
-                    </ul>
-                </div>
+            <div class="story-photos">
+                <button class="story-photo" type="button">
+                    <img src="./assets/img/slider-1/06.jpg" data-full="./assets/img/slider-1/full/06.jpg" alt=""
+                        loading="lazy" />
+                </button>
+
+                <button class="story-photo is-focus-top" type="button">
+                    <img src="./assets/img/slider-1/07.jpg" data-full="./assets/img/slider-1/full/07.jpg" alt=""
+                        loading="lazy" />
+                </button>
             </div>
+
         </div>
     </section>
 
@@ -226,28 +208,71 @@
     <section id="contact" class="contact-section">
         <div class="contact-inner">
             <div class="contact-columns">
+                <div class="vertical">
 
-
-                <div class="contact-col contact-col-right">
-                    <p class="photo-text-text">
-                        Знакомство с футболом у Кости произошло вне классического «увидел по телевизору, как играют
-                        Месси и Роналду, и захотел также». Здесь вмешалась травма, полученная на занятиях по боевому
-                        искусству.<br>
-                        <span class="pr_rech">– В первом классе я повредил голеностоп, наложили гипс. Месяц
-                            восстанавливался без тренировок, и запал как-то пропал. В этот момент как раз объявили набор
-                            ребят 2006 года рождения на футбольную секцию. Я заинтересовался и попросил маму отвести
-                            меня – с того момента начал заниматься. И понеслось, – с улыбкой вспоминает парень.</span>
-                    </p>
+                    <div class="contact-col contact-col-right">
+                        <p class="photo-text-text">
+                            Знакомство с футболом у Кости произошло вне классического «увидел по телевизору, как играют
+                            Месси и Роналду, и захотел также». Здесь вмешалась травма, полученная на занятиях по боевому
+                            искусству.<br>
+                            <span class="pr_rech">– В первом классе я повредил голеностоп, наложили гипс. Месяц
+                                восстанавливался без тренировок, и запал как-то пропал. В этот момент как раз объявили
+                                набор
+                                ребят 2006 года рождения на футбольную секцию. Я заинтересовался и попросил маму отвести
+                                меня – с того момента начал заниматься. И понеслось, – с улыбкой вспоминает
+                                парень.</span>
+                        </p>
+                    </div>
+                    <div class="contact-col contact-col-left">
+                        <p class="contact-col-text">
+                            Изначально, как это и бывает на самых первых этапах развития молодых футболистов, детей не
+                            делили по позициям, наблюдая, где они проявят себя больше всего. Но нашему герою долго
+                            выбирать
+                            не пришлось – уже с первых шагов в футболе ему больше нравилось отбивать мячи, а не забивать
+                            их.
+                            Да и успешных полевых игроков с ростом более двух метров можно пересчитать по пальцам – на
+                            ум
+                            приходит разве что Питер Крауч (201 сантиметр). И все же за размеры приходится
+                            расплачиваться
+                            скоростью и маневренностью, которые в футболе ценятся больше всего.
+                        </p>
+                    </div>
                 </div>
-                <div class="contact-col contact-col-left">
-                    <p class="contact-col-text">
-                        Изначально, как это и бывает на самых первых этапах развития молодых футболистов, детей не
-                        делили по позициям, наблюдая, где они проявят себя больше всего. Но нашему герою долго выбирать
-                        не пришлось – уже с первых шагов в футболе ему больше нравилось отбивать мячи, а не забивать их.
-                        Да и успешных полевых игроков с ростом более двух метров можно пересчитать по пальцам – на ум
-                        приходит разве что Питер Крауч (201 сантиметр). И все же за размеры приходится расплачиваться
-                        скоростью и маневренностью, которые в футболе ценятся больше всего.
-                    </p>
+
+            </div>
+
+            <div class="story-carousel">
+                <div class="carousel">
+                    <ul class="carousel__list">
+                        <li class="carousel__item" data-pos="-3" data-index="0">
+                            <img class="carousel__img" src="./assets/img/slider-1/06.jpg" loading="lazy"
+                                data-full="./assets/img/slider-1/full/06.jpg" alt="">
+                        </li>
+                        <li class="carousel__item" data-pos="-2" data-index="0">
+                            <img class="carousel__img" src="./assets/img/slider-1/01.jpg" loading="lazy"
+                                data-full="./assets/img/slider-1/full/01.jpg" alt="">
+                        </li>
+                        <li class="carousel__item" data-pos="-1" data-index="1">
+                            <img class="carousel__img" src="./assets/img/slider-1/02.jpg" loading="lazy"
+                                data-full="./assets/img/slider-1/full/02.jpg" alt="">
+                        </li>
+                        <li class="carousel__item" data-pos="0" data-index="2">
+                            <img class="carousel__img" src="./assets/img/slider-1/03.jpg" loading="lazy"
+                                data-full="./assets/img/slider-1/full/03.jpg" alt="">
+                        </li>
+                        <li class="carousel__item" data-pos="1" data-index="3">
+                            <img class="carousel__img" src="./assets/img/slider-1/04.jpg" loading="lazy"
+                                data-full="./assets/img/slider-1/full/04.jpg" alt="">
+                        </li>
+                        <li class="carousel__item" data-pos="2" data-index="4">
+                            <img class="carousel__img" src="./assets/img/slider-1/05.jpg" loading="lazy"
+                                data-full="./assets/img/slider-1/full/05.jpg" alt="">
+                        </li>
+                        <li class="carousel__item" data-pos="3" data-index="4">
+                            <img class="carousel__img" src="./assets/img/slider-1/07.jpg" loading="lazy"
+                                data-full="./assets/img/slider-1/full/07.jpg" alt="">
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-// ===== КЭШИРОВАНИЕ DOM ЭЛЕМЕНТОВ ===== 
+// ===== КЭШИРОВАНИЕ DOM ЭЛЕМЕНТОВ =====
 const DOMCache = {
   checkbox: document.getElementById("active"),
   backToTopBtn: document.querySelector(".back-to-top"),
@@ -16,10 +16,10 @@ const DOMCache = {
 let storySlides = [];
 let parallaxAnimationId = null;
 let scrollTimeout = null;
-const SCROLL_THROTTLE = 100; // ms
+const SCROLL_THROTTLE = 100;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== OVERLAY MENU: закрытие при клике ===== 
+  // ===== OVERLAY MENU: закрытие при клике =====
   if (DOMCache.checkbox) {
     document.querySelectorAll(".wrapper ul li a").forEach((link) => {
       link.addEventListener("click", () => {
@@ -28,10 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===== HEADER SCROLL EFFECT + Back To Top ===== 
+  // ===== HEADER SCROLL EFFECT + Back To Top =====
   window.addEventListener("scroll", handleScroll, { passive: true });
 
-  // ===== SMOOTH SCROLL для якорных ссылок ===== 
+  // ===== SMOOTH SCROLL для якорных ссылок =====
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ===== Back to Top Click ===== 
+  // ===== Back to Top Click =====
   if (DOMCache.backToTopBtn) {
     DOMCache.backToTopBtn.addEventListener("click", () => {
       window.scrollTo({
@@ -55,29 +55,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===== PARALLAX EFFECT (оптимизированный) ===== 
+  // ===== PARALLAX EFFECT (оптимизированный) =====
   if (window.innerWidth > 768 && DOMCache.heroBg) {
     document.addEventListener("mousemove", handleParallax, { passive: true });
   }
 
-  // ===== PRELOADER ===== 
+  // ===== PRELOADER =====
   window.addEventListener("load", () => {
     const preloader = document.querySelector(".preloader");
-    if (preloader) {
-      preloader.classList.add("hidden");
+    if (!preloader) {
+      document.documentElement.classList.remove("is-loading");
+      return;
     }
+
+    preloader.classList.add("hidden");
+
+    preloader.addEventListener(
+      "transitionend",
+      () => {
+        preloader.remove();
+        document.documentElement.classList.remove("is-loading");
+        document.body.style.overflow = "";
+      },
+      { once: true }
+    );
   });
 
-  // ===== CAROUSEL "ИСТОРИЯ" ===== 
+  // ===== CAROUSEL "ИСТОРИЯ" =====
   initCarousel();
 
-  // ===== LIGHTBOX ===== 
+  // ===== LIGHTBOX =====
   initLightbox();
 
-  // ===== GOALKEEPER GAME ===== 
+  // ===== GOALKEEPER GAME =====
   GoalkeeperGame.init();
 
-  // ===== PROJECTS CAROUSEL ===== 
+  // ===== PROJECTS CAROUSEL =====
   initProjectsCarousel();
 });
 
@@ -85,7 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
 function handleScroll() {
   const scrollY = window.scrollY;
 
-  // Header effect
   if (DOMCache.header) {
     if (scrollY > 50) {
       DOMCache.header.classList.add("scrolled");
@@ -94,7 +106,6 @@ function handleScroll() {
     }
   }
 
-  // Back to top button
   if (DOMCache.backToTopBtn) {
     if (scrollY > 400) {
       DOMCache.backToTopBtn.classList.add("show");
@@ -123,7 +134,8 @@ function handleParallax(e) {
 function initCarousel() {
   if (!DOMCache.carouselList) return;
 
-  const carouselItems = DOMCache.carouselList.querySelectorAll(".carousel__item");
+  const carouselItems =
+    DOMCache.carouselList.querySelectorAll(".carousel__item");
   storySlides = Array.from(carouselItems);
 
   const getPos = (current, active) => {
@@ -150,15 +162,29 @@ function initCarousel() {
   };
 
   DOMCache.carouselList.addEventListener("click", (event) => {
-    const newActive = event.target.closest(".carousel__item");
-    if (!newActive) return;
-    update(newActive);
+    const item = event.target.closest(".carousel__item");
+    if (!item) return;
+
+    // Если клик по активному (центральному) слайду — открываем модалку
+    if (item.dataset.pos === "0") {
+      const idx = Number(item.dataset.lbIndex);
+      if (
+        Number.isFinite(idx) &&
+        typeof window.openStoryLightbox === "function"
+      ) {
+        window.openStoryLightbox(idx);
+        return;
+      }
+    }
+
+    // Иначе — обычная ротация карусели
+    update(item);
   });
 }
 
 // ========== LIGHTBOX ==========
 function initLightbox() {
-  if (!DOMCache.lightbox || !storySlides.length) return;
+  if (!DOMCache.lightbox) return;
 
   const lightboxImg = DOMCache.lightbox.querySelector(".lightbox__img");
   const lightboxCap = DOMCache.lightbox.querySelector(".lightbox__caption");
@@ -166,104 +192,84 @@ function initLightbox() {
   const prevBtn = DOMCache.lightbox.querySelector(".lightbox__arrow--prev");
   const nextBtn = DOMCache.lightbox.querySelector(".lightbox__arrow--next");
 
-  let currentSlideIndex = 0;
+  if (!lightboxImg) return;
 
-  const openLightbox = (index) => {
-    if (!storySlides[index] || !lightboxImg) return;
+  // Все кликабельные картинки внутри STORY (и в карусели, и в ваших 2 фото)
+  const sources = Array.from(document.querySelectorAll('#story img[data-full]'));
+  if (!sources.length) return;
 
-    currentSlideIndex = index;
-    const img = storySlides[index].querySelector("img");
-    if (!img) return;
+  // Проставим индекс для открытия по item.dataset.lbIndex
+  sources.forEach((img, idx) => {
+    img.dataset.lbIndex = String(idx);
+    const item = img.closest(".carousel__item");
+    if (item) item.dataset.lbIndex = String(idx);
+  });
 
+  let currentIndex = 0;
+
+  const openByIndex = (index) => {
+    currentIndex = (index + sources.length) % sources.length;
+
+    const img = sources[currentIndex];
     const fullSrc = img.dataset.full || img.src;
+
     lightboxImg.src = fullSrc;
     lightboxImg.alt = img.alt || "";
-
-    if (lightboxCap) {
-      lightboxCap.textContent = img.alt || "";
-    }
+    if (lightboxCap) lightboxCap.textContent = img.alt || "";
 
     DOMCache.lightbox.classList.add("lightbox--open");
     document.body.style.overflow = "hidden";
   };
 
-  const closeLightbox = () => {
+  const close = () => {
     DOMCache.lightbox.classList.remove("lightbox--open");
     document.body.style.overflow = "";
   };
 
-  const showPrev = () => {
-    if (!storySlides.length) return;
-    currentSlideIndex = (currentSlideIndex - 1 + storySlides.length) % storySlides.length;
-    openLightbox(currentSlideIndex);
-  };
+  const prev = () => openByIndex(currentIndex - 1);
+  const next = () => openByIndex(currentIndex + 1);
 
-  const showNext = () => {
-    if (!storySlides.length) return;
-    currentSlideIndex = (currentSlideIndex + 1) % storySlides.length;
-    openLightbox(currentSlideIndex);
-  };
+  // Дадим карусели доступ к открытию
+  window.openStoryLightbox = openByIndex;
 
-  // Клики по фото в карточках
-  storySlides.forEach((slide, index) => {
-    const img = slide.querySelector("img");
-    if (!img) return;
-
-    if (!slide.dataset.index) {
-      slide.dataset.index = String(index);
-    }
+  // Для НЕ-карусельных фото (ваших 2 в столбец) — открываем по клику всегда
+  sources.forEach((img, idx) => {
+    const inCarousel = !!img.closest(".carousel__item");
+    if (inCarousel) return; // карусель откроет сама только для data-pos="0"
 
     img.addEventListener("click", (e) => {
-      e.stopPropagation();
-      openLightbox(index);
+      e.preventDefault();
+      openByIndex(idx);
     });
   });
 
-  // Кнопки управления
-  if (closeBtn) {
-    closeBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      closeLightbox();
-    });
-  }
+  closeBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    close();
+  });
 
-  if (prevBtn) {
-    prevBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      showPrev();
-    });
-  }
+  prevBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    prev();
+  });
 
-  if (nextBtn) {
-    nextBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      showNext();
-    });
-  }
+  nextBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    next();
+  });
 
-  // Клик по фону
   DOMCache.lightbox.addEventListener("click", (e) => {
-    if (
-      e.target === DOMCache.lightbox ||
-      e.target.classList.contains("lightbox__overlay")
-    ) {
-      closeLightbox();
+    if (e.target === DOMCache.lightbox || e.target.classList.contains("lightbox__overlay")) {
+      close();
     }
   });
 
-  // Клавиатура
   document.addEventListener("keydown", (e) => {
     if (!DOMCache.lightbox.classList.contains("lightbox--open")) return;
 
-    if (e.key === "Escape") {
-      closeLightbox();
-    }
-    if (e.key === "ArrowLeft") {
-      showPrev();
-    }
-    if (e.key === "ArrowRight") {
-      showNext();
-    }
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") prev();
+    if (e.key === "ArrowRight") next();
   });
 }
 
@@ -295,7 +301,9 @@ const GoalkeeperGame = {
 
     DOMCache.startBtn.addEventListener("click", () => this.startGame());
     DOMCache.gameField.addEventListener("click", (e) => this.onFieldClick(e));
-    DOMCache.gameField.addEventListener("touchstart", (e) => this.onFieldClick(e));
+    DOMCache.gameField.addEventListener("touchstart", (e) =>
+      this.onFieldClick(e)
+    );
   },
 
   startGame() {
@@ -320,7 +328,8 @@ const GoalkeeperGame = {
     setTimeout(() => {
       if (!this.gameActive) return;
 
-      const position = this.positions[Math.floor(Math.random() * this.positions.length)];
+      const position =
+        this.positions[Math.floor(Math.random() * this.positions.length)];
 
       DOMCache.soccerBall.className = "soccer-ball-game";
       this.ballCaught = false;
@@ -378,14 +387,11 @@ const GoalkeeperGame = {
     this.playerScore++;
 
     const goalkeeper = document.getElementById("goalkeeper");
-    
-    // Определяем, слева или справа был клик от мяча
+
     if (clickX > ballCenterX) {
-      // Клик справа - вратарь прыгает вправо
       goalkeeper.classList.remove("jumping-left");
       goalkeeper.classList.add("jumping-right");
     } else {
-      // Клик слева - вратарь прыгает влево
       goalkeeper.classList.remove("jumping-right");
       goalkeeper.classList.add("jumping-left");
     }
@@ -393,7 +399,6 @@ const GoalkeeperGame = {
     this.showMessage("✅ Словил! +1 тебе!", "caught");
     this.updateScoreboard();
 
-    // Убираем класс прыжка через 300ms
     setTimeout(() => {
       goalkeeper.classList.remove("jumping-left", "jumping-right");
     }, 300);
@@ -467,7 +472,9 @@ function initProjectsCarousel() {
   let timer = null;
   const interval = +(DOMCache.viewport.dataset.interval || 5000);
   const autoplay = DOMCache.viewport.dataset.autoplay !== "false";
-  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduce =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   dotsWrap.innerHTML = cards.map(() => "<i></i>").join("");
   const dots = Array.from(dotsWrap.children);
@@ -524,7 +531,6 @@ function initProjectsCarousel() {
   DOMCache.viewport.addEventListener("focusin", stop);
   DOMCache.viewport.addEventListener("focusout", play);
 
-  // Intersection Observer
   if (supportsIO()) {
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -543,7 +549,6 @@ function initProjectsCarousel() {
   }
 }
 
-// Проверка поддержки IntersectionObserver
 function supportsIO() {
   return typeof window !== "undefined" && "IntersectionObserver" in window;
 }

@@ -1051,8 +1051,10 @@ nav a:hover::after {
 
 /* ===== PERIMETER SECTION ===== */
 .perimeter-section {
+  font-family: "Lato", sans-serif;
   position: relative;
   width: 100%;
+  height: 90vh;
   padding: 120px 0 80px;
   background: url("../img/place.jpg") center top / cover no-repeat;
   color: #fff;
@@ -2051,5 +2053,153 @@ nav a:hover::after {
 
   .game-instructions li {
     font-size: 12px;
+  }
+}
+
+
+/* ====== GROWTH SECTION (в стиле остальных секций) ====== */
+.growth-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 120px 20px 80px;
+  background: url("../img/bg-growth.jpg") center top / cover no-repeat ;
+  overflow: hidden;
+  color: #fff;
+}
+
+.growth-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.103) 0%,
+    rgba(0, 0, 0, 0.445) 45%,
+    rgba(0, 0, 0, 0.767) 100%
+  );
+}
+
+.growth-inner {
+  position: relative;
+  z-index: 1;
+  max-width: min(1200px, 100%);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.growth-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 50px;
+  align-items: start;
+}
+
+/* LEFT (карточка как у contact-col / photo-text-content) */
+.growth-content {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 26px 24px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+    align-self: end;
+}
+
+.growth-text {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* RIGHT */
+.growth-photos {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.growth-photo {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.growth-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 0.25s ease;
+}
+
+.growth-photo:hover img {
+  transform: scale(1.06);
+}
+
+/* основной кадр */
+.growth-photo--main {
+  aspect-ratio: 3 / 4;
+}
+
+/* 2 маленьких */
+.growth-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.growth-photo-grid .growth-photo {
+  aspect-ratio: 1 / 1;
+}
+
+/* ===== Responsive (в ваших же брейкпоинтах) ===== */
+@media (max-width: 900px) {
+  .growth-section {
+    background-attachment: scroll;
+    padding: 100px 16px 60px;
+  }
+
+  .growth-layout {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .growth-content {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .growth-text {
+    font-size: 15px;
+  }
+
+  .growth-photo--main {
+    aspect-ratio: 16 / 9;
+  }
+
+  .growth-photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .growth-photo,
+  .growth-content {
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .growth-section {
+    padding: 90px 12px 50px;
+  }
+
+  .growth-text {
+    font-size: 14px;
+    line-height: 1.8;
   }
 }

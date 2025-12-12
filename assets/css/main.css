@@ -1722,20 +1722,46 @@ nav a:hover::after {
   z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;       /* важно */
   gap: 50px;
   max-width: min(1200px, 100%);
   width: 100%;
   margin: 0 auto;
-  align-items: center;
+  align-items: start;                  /* вместо center */
 }
+
 
 .photo-text-content {
   grid-column: 2 / 3;
+  grid-row: 1;                         /* важно */
   padding: 20px 24px;
   background: rgba(0, 0, 0, 0.55);
   border-radius: 20px;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
 }
+
+.photo-block {
+  grid-column: 2 / 3;                  /* справа */
+  grid-row: 2;                          /* снизу */
+  justify-self: end;                    /* прижать к правому краю */
+  width: 100%;
+  max-width: 560px;                     /* можно убрать/поменять */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+.photo-block img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;                /* держит красивую форму */
+  object-fit: cover;
+}
+
+
 
 .photo-text-title {
   font-family: "Oswald", sans-serif;
@@ -1788,6 +1814,14 @@ nav a:hover::after {
   }
   .photo-text-text {
     font-size: 15px;
+  }
+
+  .photo-text-content,
+  .photo-block {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    justify-self: stretch;
+    max-width: 100%;
   }
 }
 

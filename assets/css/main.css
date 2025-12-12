@@ -1303,9 +1303,25 @@ nav a:hover::after {
 
 /* ========== GOALKEEPER GAME ========== */
 .game-section {
+  position: relative;
   padding: 80px 20px 60px;
-  background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+  background: url("../img/game-bg.jpg") center center / cover no-repeat;
   color: #fff;
+  overflow: hidden;
+}
+
+/* затемнение поверх фото */
+.game-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.85) 60%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  z-index: 0;
 }
 
 .game-container {
@@ -1514,11 +1530,12 @@ nav a:hover::after {
 }
 
 .ball-container {
+  background: url('../img/grade.jpg');
   position: absolute;
   width: 120%;
   height: 100%;
   top: 0;
-  left: -10%;
+  left: 0%;
   z-index: 3;
 }
 
@@ -1631,7 +1648,7 @@ nav a:hover::after {
   color: #ef4444;
 }
 
-.game-instructions {
+.game-instructions {  
   margin-top: 50px;
   padding: 30px;
   background: rgba(255, 107, 53, 0.1);
@@ -1654,6 +1671,11 @@ nav a:hover::after {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
+}
+
+.game-container {
+  position: relative;
+  z-index: 1;
 }
 
 /* ========== PROJECTS CAROUSEL ========== */

@@ -2436,3 +2436,37 @@ position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 14px 16px; font-
   display: block;
   cursor: pointer;
 }
+
+/* ===== FIRST SECTION ===== */
+.hope-section--intro {
+  height: 100vh;
+  background: 
+    url("../img/footbal-3-1.jpg") center top / cover no-repeat;
+}
+
+.hope-section--intro .hope-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hope-section--intro .hope-text {
+  margin-left: 0;
+}
+
+/* ===== SECOND SECTION ===== */
+.hope-section--alt {
+  height: 100vh;
+  background: 
+    url("../img/footbal-3-2.jpg") center top / cover no-repeat;
+}
+
+.hope-section--alt .hope-inner {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hope-section--alt .hope-text {
+  max-width: 700px;
+  text-align: left;
+}

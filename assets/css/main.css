@@ -590,6 +590,8 @@ nav a:hover::after {
 
 /* ========== STORY SECTION ========== */
 .story-section {
+  display: flex;
+  align-items: flex-end;
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -603,23 +605,28 @@ nav a:hover::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
   z-index: 0;
 }
 
 .story-layout {
   position: relative;
   z-index: 1;
+
   max-width: min(1400px, 100%);
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+
   display: flex;
   gap: 40px;
-  align-items: center;
+
+  align-items: flex-end;      /* 🔥 ВАЖНО */
   justify-content: space-between;
+
   min-height: 60vh;
 }
+
 
 .story-text {
   font-family: "Lato", sans-serif;
@@ -806,6 +813,10 @@ nav a:hover::after {
     padding: 50px 16px 40px;
   }
 
+  .story-section::before {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.404));
+  }
+
   .story-layout {
     gap: 25px;
   }
@@ -840,7 +851,192 @@ nav a:hover::after {
   }
 }
 
+
+
+/* ===== GALLERY ===== */
+.gallery-section {
+  position: relative;
+  width: 100%;
+  padding: 120px 24px 80px;
+  background: url("../img/gal-bg.jpg") no-repeat center / cover scroll;
+  overflow: hidden;
+}
+
+.gallery-header {
+  max-width: min(1600px, 100%);
+  width: 100%;
+  margin: 0 auto 32px;
+  color: #111;
+}
+
+.gallery-header h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.gallery-intro {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.gallery-grid {
+  max-width: min(1600px, 100%);
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: 140px;
+  gap: 16px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  background: #000;
+  will-change: transform;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+}
+
+.gallery-item--1 { grid-column: 1 / span 2; grid-row: 1 / span 3; }
+.gallery-item--2 { grid-column: 3 / span 2; grid-row: 1 / span 2; }
+.gallery-item--3 { grid-column: 5 / span 2; grid-row: 1 / span 3; }
+.gallery-item--4 { grid-column: 1 / span 2; grid-row: 4 / span 3; }
+.gallery-item--5 { grid-column: 3 / span 2; grid-row: 3 / span 3; }
+.gallery-item--7 { grid-column: 5 / span 2; grid-row: 4 / span 3; }
+
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  padding: 120px 0 100px;
+
+  background: url("../img/znak-bg.jpg") center top / cover no-repeat fixed;
+  color: #fff;
+
+  overflow: visible; /* 🔥 КРИТИЧНО */
+}
+
+.contact-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.55));
+  z-index: 0;
+}
+
+.contact-inner {
+  position: relative;
+  z-index: 1;
+
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  display: flex;
+  gap: 80px;
+
+  align-items: center;
+}
+
+.contact-columns {
+  flex: 0 0 55%;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.contact-col {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 26px 24px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+}
+
+.contact-col-text,
+.photo-text-text {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.story-photo__captions{
+position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 14px 16px; font-family: "Lato", sans-serif; font-size: 14px; line-height: 1.35; color: rgba(255,255,255,.95); background: rgba(0,0,0,.55); backdrop-filter: blur(6px); border-top: 1px solid rgba(255,255,255,.08); /* важно: чтобы подпись не ломала клик по кнопке */ pointer-events: none;
+}
+
+.pr_rech {
+  display: block;
+  margin-top: 18px;
+  padding-left: 18px;
+  border-left: 3px solid #ff6b35;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+@media (max-width: 900px) {
+  .contact-section {
+    background-attachment: scroll;
+  }
+  .contact-inner {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .story-carousel {
+    position: relative;
+    top: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 80px 0 60px;
+    background-attachment: scroll;
+  }
+  .contact-inner {
+    gap: 32px;
+  }
+  .contact-col {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+  .contact-col-text,
+  .photo-text-text {
+    font-size: 14px;
+  }
+}
+
 /* ===== CAROUSEL ===== */
+.story-carousel {
+  flex: 0 0 45%;
+  min-height: 70vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
 .carousel {
   display: flex;
   justify-content: center;
@@ -998,171 +1194,6 @@ nav a:hover::after {
   color: #fff;
   font-size: 14px;
   opacity: 0.85;
-}
-
-/* ===== GALLERY ===== */
-.gallery-section {
-  position: relative;
-  width: 100%;
-  padding: 120px 24px 80px;
-  background: url("../img/gal-bg.jpg") no-repeat center / cover scroll;
-  overflow: hidden;
-}
-
-.gallery-header {
-  max-width: min(1600px, 100%);
-  width: 100%;
-  margin: 0 auto 32px;
-  color: #111;
-}
-
-.gallery-header h2 {
-  font-size: 32px;
-  margin-bottom: 8px;
-}
-
-.gallery-intro {
-  font-size: 18px;
-  opacity: 0.9;
-}
-
-.gallery-grid {
-  max-width: min(1600px, 100%);
-  width: 100%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  grid-auto-rows: 140px;
-  gap: 16px;
-}
-
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 22px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
-  background: #000;
-  will-change: transform;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.06);
-  filter: brightness(1.05);
-}
-
-.gallery-item--1 { grid-column: 1 / span 2; grid-row: 1 / span 3; }
-.gallery-item--2 { grid-column: 3 / span 2; grid-row: 1 / span 2; }
-.gallery-item--3 { grid-column: 5 / span 2; grid-row: 1 / span 3; }
-.gallery-item--4 { grid-column: 1 / span 2; grid-row: 4 / span 3; }
-.gallery-item--5 { grid-column: 3 / span 2; grid-row: 3 / span 3; }
-.gallery-item--7 { grid-column: 5 / span 2; grid-row: 4 / span 3; }
-
-/* ===== CONTACT SECTION ===== */
-.contact-section {
-  position: relative;
-  width: 100%;
-  padding: 120px 0 100px;
-  background: url("../img/znak-bg.jpg") center top / cover no-repeat fixed;
-  color: #fff;
-  overflow-x: hidden;
-}
-
-.contact-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.55));
-  z-index: 0;
-}
-
-.contact-inner {
-  position: relative;
-  z-index: 1;
-  max-width: min(1200px, 100%);
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  gap: 60px;
-  align-items: flex-start;
-}
-
-.contact-columns {
-  flex: 1;
-}
-
-.vertical {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-}
-
-.contact-col {
-  background: rgba(0, 0, 0, 0.55);
-  padding: 26px 24px;
-  border-radius: 20px;
-  backdrop-filter: blur(6px);
-}
-
-.contact-col-text,
-.photo-text-text {
-  font-family: "Lato", sans-serif;
-  font-size: 16px;
-  line-height: 1.85;
-  color: rgba(255, 255, 255, 0.92);
-}
-
-.story-photo__captions{
-position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 14px 16px; font-family: "Lato", sans-serif; font-size: 14px; line-height: 1.35; color: rgba(255,255,255,.95); background: rgba(0,0,0,.55); backdrop-filter: blur(6px); border-top: 1px solid rgba(255,255,255,.08); /* важно: чтобы подпись не ломала клик по кнопке */ pointer-events: none;
-}
-
-.pr_rech {
-  display: block;
-  margin-top: 18px;
-  padding-left: 18px;
-  border-left: 3px solid #ff6b35;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.95);
-}
-
-@media (max-width: 900px) {
-  .contact-section {
-    background-attachment: scroll;
-  }
-  .contact-inner {
-    flex-direction: column;
-    gap: 40px;
-  }
-  .story-carousel {
-    position: relative;
-    top: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .contact-section {
-    padding: 80px 0 60px;
-    background-attachment: scroll;
-  }
-  .contact-inner {
-    gap: 32px;
-  }
-  .contact-col {
-    padding: 22px 18px;
-    border-radius: 16px;
-  }
-  .contact-col-text,
-  .photo-text-text {
-    font-size: 14px;
-  }
 }
 
 /* ===== PERIMETER SECTION ===== */

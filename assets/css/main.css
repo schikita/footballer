@@ -1281,12 +1281,17 @@ position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 14px 16px; font-
 .hope-section {
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
+
+  display: flex;                 /* 🔥 */
+  align-items: center;         /* 🔥 прижимаем вниз */
+
   padding: 120px 0 80px;
   background: url("../img/pre-last-bg.jpg") center top / cover no-repeat;
   color: #fff;
   overflow-x: hidden;
 }
+
 
 .hope-section::before {
   content: "";

@@ -552,3 +552,43 @@ function initProjectsCarousel() {
 function supportsIO() {
   return typeof window !== "undefined" && "IntersectionObserver" in window;
 }
+
+
+
+  const modal = document.getElementById("imageModal");
+  const modalImg = modal.querySelector(".modal__img");
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".photo-open");
+    if (!btn) return;
+
+    const img = btn.querySelector("img");
+    modalImg.src = img.dataset.full || img.src;
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  });
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    modalImg.src = "";
+    document.body.style.overflow = "";
+  };
+
+  modal.addEventListener("click", (e) => {
+    if (
+      e.target.classList.contains("modal__overlay") ||
+      e.target.classList.contains("modal__close")
+    ) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+

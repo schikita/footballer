@@ -2358,3 +2358,81 @@ position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 14px 16px; font-
     line-height: 1.8;
   }
 }
+
+/* ===== MODAL ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.is-open {
+  display: flex;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+}
+
+/* контейнер модалки */
+.modal__content {
+  position: relative;
+  z-index: 1;
+
+  max-width: 70vw;     /* 🔹 чуть меньше */
+  max-height: 70vh;
+  padding: 12px;
+
+  background: #000;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+}
+
+/* изображение */
+.modal__img {
+  max-width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+/* кнопка закрытия */
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+
+  background: rgba(0,0,0,.6);
+  border: none;
+  color: #fff;
+
+  font-size: 26px;
+  line-height: 1;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.modal__close:hover {
+  background: rgba(255,255,255,.15);
+}
+
+.photo-open {
+  all: unset;              /* 🔥 полностью убирает стили кнопки */
+  display: block;
+  cursor: pointer;
+}
